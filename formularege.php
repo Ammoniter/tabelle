@@ -25,8 +25,7 @@
           <button type="submit" value="absenden" class="form-control btn
           btn-default">Absenden</button>
         </form>
-      </div>
-    <?php } ?>
+      </div> 
       <div class="col-md-12">
         <?php
         session_start();
@@ -59,6 +58,7 @@
         else {
           echo "Passwörter stimmen nicht überein!";
           $_SESSION['eingeloggt'] = false;
+        } 
         }
 
         ?>

@@ -7,47 +7,84 @@
 <body>
 	<section class="container">
 		<div class="row">
-			<h1>Registration</h1>
+			<h1><center>Registration</h1></center>
+			 <?php
+			 	session_start();
+			 ?>
+
+
 			<div class="col-md-12">
 
 				<form action="formular.php" method="post">
-				<input type="text" name="vorname" /*value="<?=@$_POST['vorname']?>" */ class="form-control" placeholder="Vornamen"/><br>
-				<input type="text" name="nachnamen" /*value="<?=@$_POST['nachnamen']?>" */ class="form-control" placeholder="Nachnamen"/>
+				<input type="text" name="vorname" value="<?=@$_POST['vorname']?>"  class="form-control" placeholder="Vornamen"/><br>
+				<input type="text" name="nachnamen" value="<?=@$_POST['nachnamen']?>"  class="form-control" placeholder="Nachnamen"/>
 				<br>
-				<input type="password" name="password" /*value="<?=@$_POST['password']?>" */ class="form-control" placeholder="Passwort"/><br>
-				<input type="password" name="passwordcontrol" /*value="<?=@$_POST['passwordcontrol']?>" */ class="form-control" placeholder="Passwort bestätigen"/><br>
-
-			    <button type="submit" value="übermitteln" class="form-control btn btn-default" /> Absenden
+				<input type="email" name="email" class="form-control" placeholder="Email"/>
+				<br>
+				<input type="password" name="password" value="<?=@$_POST['password']?>"  class="form-control" placeholder="Passwort"/><br>
+				<input type="password" name="passwordcontrol" value="<?=@$_POST['passwordcontrol']?>" class="form-control" placeholder="Passwort bestätigen"/><br>
+				<input type="hidden" name="logout" value="0">
+			    <button type="submit" value="übermitteln" class="form-control btn btn-success" /> Absenden
 			    </button>
 			</div>
 			<div class="col-md-12">
-				<?php 
+				<?php
+
+        $datum = date("d.F.Y");
 					if(empty($_POST['vorname']) == TRUE)
 					{
-						echo "Bitte geben Sie Ihren Vor- und Nachnamen ein!";
+						echo "Bitte geben Sie Ihren Vor- und Nachnamen ein!" . "<br>";
 					}
 					else
 					{
-					if($_POST['vorname'] != "")
-					{
-						echo "Der Eingetragene Vorname ist: ". "<em>" . $_POST['vorname'] ."</em><br>";
+						if($_POST['vorname'] != "")
+						{
+							echo "Der Eingetragene Vorname ist: ". "<em>" . $_POST['vorname'] ."</em><br>";
+						}
+						if($_POST['nachnamen'] != "")
+						{
+							echo "Der Eingetragene Nachnamen ist: ". "<em>". $_POST['nachnamen'] . "</em><br>";		}
 					}
-					if($_POST['nachnamen'] != "")
-					{
-						echo "Der Eingetragene Nachnamen ist: ". "<em>". $_POST['nachnamen'] . "</em><br>";
-					}
-				}
-				if((@$_POST['password']) == (@$_POST['passwordcontrol']))
+				if(empty($_POST['password']) && empty($_POST['passwordcontrol']))
 				{
-					echo "Passwörter stimmen überein!";
+					echo "Bitte geben Sie ein Passwort ein!";
 				}
-				else echo "<strong>" . "Passwörter sind nicht gleich!" . " </strong>";
+				elseif(($_POST['password']) == ($_POST['passwordcontrol']))
+				{
+					echo "<strong>" . "Passwörter stimmen überein!" . " </strong><br>";
+					$_SESSION['eingeloggt'] = TRUE;
+        			  if ($_SESSION['eingeloggt']==TRUE) {
+          			  echo "<br>Anmeldung erfolgreich!";
+           			 echo "<br>$datum";}
+				}
+				else
+				{
+				 echo "<strong>" . "Passwörter sind nicht gleich!" . " </strong><br>";
+				 $_SESSION['eingeloggt'] = false;
+				}
+
+				 if(@$_SESSION['eingeloggt'] == TRUE)
+     			{
+       			 echo "Sie sind eingeloggt!!!";
+        		?>
+       			 <form action="formular.php" method="post">
+       			<input type="hidden" name="logout" value="0"/>
+        		<button type="submit" value="1" name="logout" class="form-control btn btn-success" /> logout
+			    </button>
+			    </form>
+			    <?php
+					if(($_POST['logout']) == 1)
+					{
+						echo "Sie sind abgemolden";
+						$_SESSION['eingeloggt'] = false;
+					}
+     			 }
 
 				?>
-					
-					
+
+
 			</div>
 		</div>
 	</section>
 </body>
-</html>
+</form>
