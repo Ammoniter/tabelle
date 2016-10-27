@@ -1,3 +1,8 @@
+<?php
+$db = new mysqli("localhost", "root", "", "benutzer");
+
+
+?>
 <html>
 <head>
 	<title>Formular</title>
@@ -33,6 +38,7 @@
         $datum = date("d.F.Y");
 					if(empty($_POST['vorname']) == TRUE)
 					{
+						$error = true;
 						echo "Bitte geben Sie Ihren Vor- und Nachnamen ein!" . "<br>";
 					}
 					else
@@ -47,6 +53,7 @@
 					}
 				if(empty($_POST['password']) && empty($_POST['passwordcontrol']))
 				{
+					$error = true;
 					echo "Bitte geben Sie ein Passwort ein!";
 				}
 				elseif(($_POST['password']) == ($_POST['passwordcontrol']))
@@ -59,8 +66,14 @@
 				}
 				else
 				{
+					$error = true;
 				 echo "<strong>" . "Passwörter sind nicht gleich!" . " </strong><br>";
 				 $_SESSION['eingeloggt'] = false;
+				}
+
+				if(@$error == false)
+				{
+					$db->query("INSERT INTO benutzer (Vornamen, Nachnamen) VALUES ('".$_POST['vorname']."', '".$_POST['nachnamen']."') ");
 				}
 
 				 if(@$_SESSION['eingeloggt'] == TRUE)
