@@ -1,5 +1,5 @@
 <?php
-$db = new mysqli("localhost", "root", "", "benutzer");
+$db = new mysqli("localhost", "root", "", "benutzerkonto");
 
 
 ?>
@@ -24,7 +24,7 @@ $db = new mysqli("localhost", "root", "", "benutzer");
 				<input type="text" name="vorname" value="<?=@$_POST['vorname']?>"  class="form-control" placeholder="Vornamen"/><br>
 				<input type="text" name="nachnamen" value="<?=@$_POST['nachnamen']?>"  class="form-control" placeholder="Nachnamen"/>
 				<br>
-				<input type="email" name="email" class="form-control" placeholder="Email"/>
+				<input type="email" name="email" class="form-control" value="<?=@$_POST['email']?>" placeholder="Email"/>
 				<br>
 				<input type="password" name="password" value="<?=@$_POST['password']?>"  class="form-control" placeholder="Passwort"/><br>
 				<input type="password" name="passwordcontrol" value="<?=@$_POST['passwordcontrol']?>" class="form-control" placeholder="Passwort bestätigen"/><br>
@@ -43,6 +43,10 @@ $db = new mysqli("localhost", "root", "", "benutzer");
 					}
 					else
 					{
+						if($_POST['email'] != "")
+						{
+							echo "Der Eingetragene Vorname ist: ". "<em>" . $_POST['email'] ."</em><br>";
+						}
 						if($_POST['vorname'] != "")
 						{
 							echo "Der Eingetragene Vorname ist: ". "<em>" . $_POST['vorname'] ."</em><br>";
@@ -62,7 +66,7 @@ $db = new mysqli("localhost", "root", "", "benutzer");
 					$_SESSION['eingeloggt'] = TRUE;
         			  if ($_SESSION['eingeloggt']==TRUE) {
           			  echo "<br>Anmeldung erfolgreich!";
-           			 echo "<br>$datum";}
+           			 echo "<br>$datum" . "<br>";}
 				}
 				else
 				{
@@ -71,11 +75,33 @@ $db = new mysqli("localhost", "root", "", "benutzer");
 				 $_SESSION['eingeloggt'] = false;
 				}
 
-				if(@$error == false)
+
+				$check = $db->query("SELECT * FROM benutzerdaten WHERE Nachnamen = '".$_POST['nachnamen']."' ");
+				if($check->num_rows > 0)
 				{
-					$db->query("INSERT INTO benutzer (Vornamen, Nachnamen) VALUES ('".$_POST['vorname']."', '".$_POST['nachnamen']."') ");
+					$error = true;
+					echo 'Dieser Benutzer existiert bereits!' . '<br>';
 				}
 
+				if(@$error == false)
+				{
+					$db->query("INSERT INTO benutzerdaten (Vornamen, Nachnamen, Email, Passwort) VALUES ('".$_POST['vorname']."', '".$_POST['nachnamen']."', '".$_POST['email']."', '".$_POST['passwordcontrol']."') ");
+				}
+				if ($db->connect_error) {
+				    die("Connection failed: " . $conn->connect_error);
+				}
+
+				$sql = "SELECT Vornamen, Nachnamen, Email, Passwort FROM benutzerdaten";
+				$result = $db->query($sql);
+
+				if ($result->num_rows > 0) {
+				    // output data of each row
+				    while($row = $result->fetch_assoc()) {
+				        echo "<strong>Name:</strong> <tr><td>" . $row["Vornamen"].  " </td><strong>Nachnamen:</strong> <td>" . $row["Nachnamen"].  " </td><strong>Email:</strong> <td>" . $row["Email"].  " </td><strong>Passwort:</strong> <td>" . $row["Passwort"]. "</td></tr><br>";
+				    }
+				} else {
+				    echo "0 results";
+				}
 				 if(@$_SESSION['eingeloggt'] == TRUE)
      			{
        			 echo "Sie sind eingeloggt!!!";
