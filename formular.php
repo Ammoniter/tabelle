@@ -7,13 +7,15 @@
 <body>
 	<section class="container">
 		<div class="row">
-			<h1>mein Formular</h1>
+			<h1>Registration</h1>
 			<div class="col-md-12">
 
 				<form action="formular.php" method="post">
-				<input type="text" name="vorname" value="<?=$_POST['vorname']?>" class="form-control"/><br>
-				<input type="text" name="nachnamen" value="<?=$_POST['nachnamen']?>" class="form-control"/><br>
-				<input type="password" name="Passwort 1" value="<?=$_POST['Passwort1']?>" class="form-control"/><br>
+				<input type="text" name="vorname" value="<?=@$_POST['vorname']?>" class="form-control" placeholder="Vornamen"/><br>
+				<input type="text" name="nachnamen" value="<?=@$_POST['nachnamen']?>" class="form-control" placeholder="Nachnamen"/>
+				<br>
+				<input type="password" name="password" value="<?=@$_POST['password']?>" class="form-control" placeholder="Passwort"/><br>
+				<input type="password" name="passwordcontrol" value="<?=@$_POST['passwordcontrol']?>" class="form-control" placeholder="Passwort bestätigen"/><br>
 
 			    <button type="submit" value="übermitteln" class="form-control btn btn-default" /> Absenden
 			    </button>
@@ -28,17 +30,19 @@
 					{
 					if($_POST['vorname'] != "")
 					{
-						echo "eingetragener Vorname: ". $_POST['vorname'] ."<br>";
+						echo "Der Eingetragene Vorname ist: ". "<em>" . $_POST['vorname'] ."</em><br>";
 					}
 					if($_POST['nachnamen'] != "")
 					{
-						echo " eingetragener Nachnamen: ". $_POST['nachnamen'];
+						echo "Der Eingetragene Nachnamen ist: ". "<em>". $_POST['nachnamen'] . "</em><br>";
 					}
 				}
-				if(empty($_POST['Passwort1']) == TRUE)
-					{
-						echo "Bitte geben Sie Ihren Vor- und Nachnamen ein!";
-					}
+				if((@$_POST['password']) == (@$_POST['passwordcontrol']))
+				{
+					echo "Passwörter stimmen überein!";
+				}
+				else echo "<strong>" . "Passwörter sind nicht gleich!" . " </strong>";
+
 				?>
 					
 					
