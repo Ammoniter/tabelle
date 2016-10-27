@@ -1,7 +1,6 @@
 <?php
 $db = new mysqli("localhost", "root", "", "benutzerkonto");
 
-
 ?>
 <html>
 <head>
@@ -28,7 +27,6 @@ $db = new mysqli("localhost", "root", "", "benutzerkonto");
 				<br>
 				<input type="password" name="password" value="<?=@$_POST['password']?>"  class="form-control" placeholder="Passwort"/><br>
 				<input type="password" name="passwordcontrol" value="<?=@$_POST['passwordcontrol']?>" class="form-control" placeholder="Passwort bestätigen"/><br>
-				<input type="hidden" name="logout" value="0">
 			    <button type="submit" value="übermitteln" class="form-control btn btn-success" /> Absenden
 			    </button>
 			</div>
