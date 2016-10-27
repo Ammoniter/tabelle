@@ -11,11 +11,11 @@
 			<div class="col-md-12">
 
 				<form action="formular.php" method="post">
-				<input type="text" name="vorname" value="<?=@$_POST['vorname']?>" class="form-control" placeholder="Vornamen"/><br>
-				<input type="text" name="nachnamen" value="<?=@$_POST['nachnamen']?>" class="form-control" placeholder="Nachnamen"/>
+				<input type="text" name="vorname" /*value="<?=@$_POST['vorname']?>" */ class="form-control" placeholder="Vornamen"/><br>
+				<input type="text" name="nachnamen" /*value="<?=@$_POST['nachnamen']?>" */ class="form-control" placeholder="Nachnamen"/>
 				<br>
-				<input type="password" name="password" value="<?=@$_POST['password']?>" class="form-control" placeholder="Passwort"/><br>
-				<input type="password" name="passwordcontrol" value="<?=@$_POST['passwordcontrol']?>" class="form-control" placeholder="Passwort bestätigen"/><br>
+				<input type="password" name="password" /*value="<?=@$_POST['password']?>" */ class="form-control" placeholder="Passwort"/><br>
+				<input type="password" name="passwordcontrol" /*value="<?=@$_POST['passwordcontrol']?>" */ class="form-control" placeholder="Passwort bestätigen"/><br>
 
 			    <button type="submit" value="übermitteln" class="form-control btn btn-default" /> Absenden
 			    </button>
