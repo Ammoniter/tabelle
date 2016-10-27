@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title>Formular</title>
+	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
@@ -9,10 +10,20 @@
 			<h1>mein Formular</h1>
 			<div class="col-md-12">
 
-				<form action="senden.php" method="get">
-				<input type="text" name="vorname" class="form-control "/>
+				<form action="formular.php" method="get">
+				<input type="text" name="vorname" value="<?=@$_GET['vorname']?>"" class="form-control"/><br>
 			    <button type="submit" value="übermitteln" class="form-control btn btn-default" /> Absenden
 			    </button>
+			</div>
+			<div class="col-md-12">
+				<?php 
+					if(@$_GET['vorname'] != "")
+					{
+						echo "eingetragener Vorname: ". @$_GET['vorname'];
+					}
+				?>
+					
+					
 			</div>
 		</div>
 	</section>
