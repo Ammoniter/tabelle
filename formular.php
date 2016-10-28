@@ -25,8 +25,35 @@ $db = new mysqli("localhost", "root", "", "benutzerkonto");
 				<br>
 				<input type="email" name="email" class="form-control" value="<?=@$_POST['email']?>" placeholder="Email"/>
 				<br>
+				<input type="number" name="tel" class="form-control" value="<?=@$_POST['tel']?>" placeholder="Telefonnummer">
+				<br>
 				<input type="password" name="password" value="<?=@$_POST['password']?>"  class="form-control" placeholder="Passwort"/><br>
 				<input type="password" name="passwordcontrol" value="<?=@$_POST['passwordcontrol']?>" class="form-control" placeholder="Passwort bestätigen"/><br>
+				<input type="radio" name="Sex">männlich</input><br>
+				<input type="radio" name="Sex">weiblich</input><br>
+				<input type="radio" name="Sex">anderes</input><br>
+
+				<div class="checkbox">
+  <label><input type="checkbox" value="">Option 2</label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value="">Option 2</label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value="">Option 2</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="optradio">Option 1</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="optradio">Option 2</label>
+</div>
+<div class="radio disabled">
+  <label><input type="radio" name="optradio" disabled>Option 3</label>
+</div>
+
+
+
 			    <button type="submit" value="übermitteln" class="form-control btn btn-success" /> Absenden
 			    </button>
 			</div>
