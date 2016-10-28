@@ -8,9 +8,6 @@ $db = new mysqli("localhost", "root", "", "benutzerkonto");
 	<script   src="https://code.jquery.com/jquery-3.1.1.js"   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="   crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
 	<script src="script.js"></script>
-
-
-
 	<link href="style.css" rel="stylesheet">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<!-- Latest compiled and minified CSS -->
@@ -31,16 +28,16 @@ $db = new mysqli("localhost", "root", "", "benutzerkonto");
 
 			<div class="col-md-12">
 
-				<form action="formular.php" method="post">
-				<input type="text" name="vorname" value="<?=@$_POST['vorname']?>"  class="form-control" placeholder="Vornamen"/><br>
-				<input type="text" name="nachnamen" value="<?=@$_POST['nachnamen']?>"  class="form-control" placeholder="Nachnamen"/>
+				<form id="myForm" action="formular.php" method="post">
+				<input id="vorname" type="text" name="vorname" value="<?=@$_POST['vorname']?>"  class="form-control" placeholder="Vornamen"/><br>
+				<input id="nachnamen" type="text" name="nachnamen" value="<?=@$_POST['nachnamen']?>"  class="form-control" placeholder="Nachnamen"/>
 				<br>
-				<input type="email" name="email" class="form-control" value="<?=@$_POST['email']?>" placeholder="Email"/>
+				<input id="email" type="email" name="email" class="form-control" value="<?=@$_POST['email']?>" placeholder="Email"/>
 				<br>
-				<input type="number" name="tel" class="form-control" value="<?=@$_POST['tel']?>" placeholder="Telefonnummer">
+				<input id="number" type="number" name="tel" class="form-control" value="<?=@$_POST['tel']?>" placeholder="Telefonnummer">
 				<br>
 
-				<input type="password" name="password" value="<?=@$_POST['password']?>"  class="form-control" placeholder="Passwort"/><br>
+				<input id="password" type="password" name="password" value="<?=@$_POST['password']?>"  class="form-control" placeholder="Passwort"/><br>
 				<input type="password" name="passwordcontrol" value="<?=@$_POST['passwordcontrol']?>" class="form-control" placeholder="Passwort bestätigen"/><br>
 				<input type="radio" name="Sex">männlich</input><br>
 				<input type="radio" name="Sex">weiblich</input><br>
@@ -65,7 +62,7 @@ $db = new mysqli("localhost", "root", "", "benutzerkonto");
   <label><input type="radio" name="optradio" disabled>Option 3</label>
 </div>
 
-					<button onclick='getConfirmation();' type="submit" value="übermitteln" class="form-control btn btn-success" /><i class="fa fa-paper-plane" aria-hidden="true"></i> Absenden
+					<button onclick='getConfirmation(this.value);' type="submit" value='übermitteln' class="form-control btn btn-success" /><i class="fa fa-paper-plane" aria-hidden="true"></i> Absenden
 			    </button>
 			</div>
 			<div class="col-md-12">
