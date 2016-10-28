@@ -5,8 +5,20 @@ $db = new mysqli("localhost", "root", "", "benutzerkonto");
 <html>
 <head>
 	<title>Formular</title>
+	<script   src="https://code.jquery.com/jquery-3.1.1.js"   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="   crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+	<script src="script.js"></script>
+
+
+
+	<link href="style.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
 </head>
 <body>
 	<section class="container">
@@ -27,6 +39,7 @@ $db = new mysqli("localhost", "root", "", "benutzerkonto");
 				<br>
 				<input type="number" name="tel" class="form-control" value="<?=@$_POST['tel']?>" placeholder="Telefonnummer">
 				<br>
+
 				<input type="password" name="password" value="<?=@$_POST['password']?>"  class="form-control" placeholder="Passwort"/><br>
 				<input type="password" name="passwordcontrol" value="<?=@$_POST['passwordcontrol']?>" class="form-control" placeholder="Passwort bestätigen"/><br>
 				<input type="radio" name="Sex">männlich</input><br>
@@ -52,9 +65,7 @@ $db = new mysqli("localhost", "root", "", "benutzerkonto");
   <label><input type="radio" name="optradio" disabled>Option 3</label>
 </div>
 
-
-
-			    <button type="submit" value="übermitteln" class="form-control btn btn-success" /> Absenden
+					<button onclick='getConfirmation();' type="submit" value="übermitteln" class="form-control btn btn-success" /><i class="fa fa-paper-plane" aria-hidden="true"></i> Absenden
 			    </button>
 			</div>
 			<div class="col-md-12">
@@ -135,6 +146,8 @@ $db = new mysqli("localhost", "root", "", "benutzerkonto");
        			<input type="hidden" name="logout" value="0"/>
         		<button type="submit" value="1" name="logout" class="form-control btn btn-success" /> logout
 			    </button>
+					<button type="button" value="1" name="logout" class="form-control btn btn-info" /> logout
+				</button>
 			    </form>
 			    <?php
 					if(($_POST['logout']) == 1)
